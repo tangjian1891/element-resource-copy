@@ -44,17 +44,60 @@
       <tj-button type="text" disabled>文字啊</tj-button>
       <tj-button type="text">1234</tj-button>
     </div>
+    <hr />
+    <div class="demo-button">
+      <tj-button-group>
+        <tj-button type="primary">上一页</tj-button>
+        <tj-button type="primary">下一页</tj-button>
+        <tj-button type="primary">下一页</tj-button>
+      </tj-button-group>
+    </div>
+    <div class="demo-button">
+      <tj-button-group>
+        <tj-button type="warning">上一页</tj-button>
+        <tj-button type="warning">下一页</tj-button>
+      </tj-button-group>
+    </div>
+    <div class="demo-button">
+      <tj-button-group>
+        <tj-button type="primary">上一页</tj-button>
+      </tj-button-group>
+    </div>
+    <hr />
+    <div class="demo-button">
+      <tj-button type="primary" disabled icon="el-icon-check">文字啊</tj-button>
+      <tj-button type="primary" icon="el-icon-search">1234</tj-button>
+    </div>
+    <div class="demo-button">
+      <tj-button type="primary" disabled :loading="true">文字啊</tj-button>
+      <tj-button type="primary" :loading="true">1234</tj-button>
+    </div>
+    <div class="demo-button">
+      <tj-button>默认按钮</tj-button>
+      <tj-button size="medium">中等按钮</tj-button>
+      <tj-button size="small">小型按钮</tj-button>
+      <tj-button size="mini">超小按钮</tj-button>
+    </div>
+    <hr />
+    <div class="demo-button">
+      <tj-button>默认按钮</tj-button>
+      <tj-button size="medium" native-type="button">中等按钮</tj-button>
+      <tj-button size="small" native-type="submit">小型按钮</tj-button>
+      <tj-button size="mini" autofocus native-type="reset">超小按钮</tj-button>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import TjButton from "@/components/tj-button.vue";
+import TjButtonGroup from "@/components/tj-button-group.vue";
 
 export default {
   name: "Home",
   components: {
-    TjButton
+    TjButton,
+    TjButtonGroup
   },
   methods: {
     /**
@@ -67,9 +110,12 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .demo-button .tj-button + .tj-button {
   margin-left: 10px;
+  margin-top: 10px;
+}
+.demo-button {
   margin-top: 10px;
 }
 </style>

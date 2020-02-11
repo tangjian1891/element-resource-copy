@@ -1,18 +1,25 @@
 <template>
   <button
-    type="button"
+    :type="nativeType || 'button'"
+    :autofocus="autofocus"
     :class="[
       'tj-button',
       'tj-button--' + type,
+      'tj-button--' + size,
       { 'is-plain': plain },
       { 'is-round': round },
       { 'is-circle': circle },
-      { 'is-disabled': disabled }
+      { 'is-disabled': disabled },
+      { 'is-loading': loading },
+      { 'is-loading': loading }
     ]"
     :disabled="disabled"
     @click="handleClick"
   >
-    <span>
+    <i v-if="loading" class="el-icon-loading"></i>
+    <i v-if="icon && !loading" :class="icon"></i>
+
+    <span v-if="$slot.default">
       <slot>按钮</slot>
     </span>
   </button>
@@ -37,7 +44,24 @@ export default {
       type: Boolean
     },
     disabled: Boolean,
-    text: Boolean
+    text: Boolean,
+    icon: {
+      type: String
+    },
+    loading: Boolean,
+    size: {
+      type: String,
+      validator: function(value) {
+        return ["medium", "small", "mini"].indexOf(value) !== -1;
+      }
+    },
+    "native-type": {
+      type: String,
+      validator(value) {
+        return ["button", "submit", "reset"].indexOf(value) !== -1;
+      }
+    },
+    autofocus: Boolean
   },
   methods: {
     handleClick(event) {
@@ -48,6 +72,34 @@ export default {
 </script>
 
 <style lang="scss">
+@font-face {
+  font-family: element-icons;
+  src: url(./../assets/fonts/element-icons.woff) format("woff"),
+    url(./../assets/fonts/element-icons.ttf) format("truetype");
+  font-weight: 400;
+  font-display: "auto";
+  font-style: normal;
+}
+[class*=" el-icon-"],
+[class^="el-icon-"] {
+  font-family: element-icons !important;
+  speak: none;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: baseline;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.el-icon-edit:before {
+  content: "\e78c";
+}
+.el-icon-search:before {
+  content: "\e78c";
+}
 //默认
 .tj-button {
   display: inline-block;
@@ -104,6 +156,65 @@ export default {
     background-image: none;
     background-color: #fff;
     border-color: #ebeef5;
+  }
+
+  &.is-loading {
+    position: relative;
+    pointer-events: none;
+  }
+
+  &.is-loading:before {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    border-radius: inherit;
+    background-color: hsla(0, 0%, 100%, 0.35);
+  }
+
+  &--medium {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+  }
+
+  &--medium.is-round {
+    padding: 10px 20px;
+  }
+
+  &--medium.is-circle {
+    padding: 10px;
+  }
+
+  &--small {
+    padding: 9px 15px;
+    font-size: 12px;
+    border-radius: 3px;
+  }
+
+  &--small.is-round {
+    padding: 9px 15px;
+  }
+
+  &--small.is-circle {
+    padding: 9px;
+  }
+
+  &--mini {
+    padding: 7px 15px;
+    font-size: 12px;
+    border-radius: 3px;
+  }
+
+  &--mini.is-round {
+    padding: 7px 15px;
+  }
+
+  &--mini.is-circle {
+    padding: 7px;
   }
 }
 // primary

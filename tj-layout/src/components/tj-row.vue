@@ -1,5 +1,5 @@
 <template>
-  <div class="tj-row">
+  <div :class="['tj-row',{'tj-row-flex':setflex}]" :style="[setJustify,calcRowGutter]">
     <slot></slot>
   </div>
 </template>
@@ -11,9 +11,28 @@ export default {
     gutter: {
       type: Number,
       default: 0
+    },
+    type: {
+      type: String,
+      default: ""
+    },
+    justify: {
+      type: String,
+      default: ""
     }
   },
   computed: {
+    setJustify() {
+      if (this.justify === "") {
+        return "";
+      }
+      return {
+        "justify-content": this.justify
+      };
+    },
+    setflex() {
+      return this.type === "flex";
+    },
     calcRowGutter() {
       if (this.gutter === 0) {
         return;
@@ -24,11 +43,16 @@ export default {
         marginRight: value
       };
     }
+    // 因为第一个元素的和最后一个元素的 内边距问题。
   }
 };
 </script>
 
 <style lang="scss">
+.tj-row-flex {
+  display: flex;
+  justify-content: flex-start;
+}
 .tj-row {
   // box-sizing: border-box;
   &::after {
@@ -40,6 +64,9 @@ export default {
     content: "";
     display: block;
     clear: both;
+  }
+  &-flex {
+    display: flex;
   }
 }
 </style>

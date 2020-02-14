@@ -56,6 +56,34 @@
         <div class="bgc">C</div>
       </tj-col>
     </tj-row>
+    <hr />
+    <tj-row :gutter="100">
+      <tj-col :span="6" :offset="6">
+        <div class="bgc">A</div>
+      </tj-col>
+
+      <tj-col :span="6" :offset="6">
+        <div class="bgc">C</div>
+      </tj-col>
+    </tj-row>
+    <hr />
+    <tj-row>
+      <tj-col :span="6" :offset="6">
+        <div class="bgc">A</div>
+      </tj-col>
+      <tj-col :span="6" :offset="6">
+        <div class="bgc">C</div>
+      </tj-col>
+    </tj-row>
+    <hr />
+    <tj-row type="flex" justify="flex-end" :gutter="20">
+      <tj-col :span="8">
+        <div class="bgc">A</div>
+      </tj-col>
+      <tj-col :span="8">
+        <div class="bgc">C</div>
+      </tj-col>
+    </tj-row>
   </div>
 </template>
 
@@ -76,6 +104,9 @@ export default {
   margin-top: 10px;
 }
 .bgc {
-  background-color: blue;
+  background-color: #ccc;
+}
+.home {
+  width: 500px;
 }
 </style>

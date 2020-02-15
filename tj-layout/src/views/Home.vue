@@ -84,6 +84,25 @@
         <div class="bgc">C</div>
       </tj-col>
     </tj-row>
+    <hr />
+    <tj-row type="flex" :gutter="20">
+      <tj-col :xs="6" :sm="2" :md="1">
+        <div class="bgc">A</div>
+      </tj-col>
+      <tj-col :xs="6" :sm="4" :md="23">
+        <div class="bgc">C</div>
+      </tj-col>
+    </tj-row>
+    <hr />
+    <tj-row type="flex" :gutter="20">
+      <tj-col :push="0" :xs="6" :sm="2" :md="1">
+        <div class="bgc">A</div>
+      </tj-col>
+      <tj-col :xs="6" :sm="4" :md="23">
+        <div class="bgc">C</div>
+      </tj-col>
+    </tj-row>
+    <hr />
   </div>
 </template>
 
